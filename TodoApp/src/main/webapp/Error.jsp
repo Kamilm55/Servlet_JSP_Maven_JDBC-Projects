@@ -5,7 +5,7 @@
 <html>
 <body>
 <%
-	String error = (String) request.getAttribute("error");
+	String error = (String) session.getAttribute("error");
 %>
 
 <center>

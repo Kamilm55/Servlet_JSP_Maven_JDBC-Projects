@@ -18,8 +18,9 @@
 
 <center>
 <h2>Main page!</h2>
-<h3>User Name:${user.getUsername()}</h3>
-<h3> User Email: ${user.getEmail()}</h3>
+<h5>Full Name:${user.getFull_name()}</h5>
+<h5> Email: ${user.getEmail()}</h5>
+<h5> UserName: ${user.getUsername()}</h5>
 <form action="./LogOut" >
 <input type="submit" value="Log out" />
 </form>

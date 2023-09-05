@@ -76,8 +76,11 @@
       <predefined_log_file id="Tomcat Catalina Log" />
       <predefined_log_file id="Tomcat Manager Log" />
       <predefined_log_file id="Tomcat Host Manager Log" />
-      <option name="contextPath" value="/Test" />
+      <option name="contextPath" value="/TodoApp" />
       <option name="docBase" value="C:\Users\User\IdeaProjects\MavenProjects\Servlet_JSP_Maven_JDBC-Projects\TodoApp\src\main\webapp" />
+      <option name="envOptions">
+        <map />
+      </option>
       <option name="extraClassPath" value="" />
       <option name="tomcatInfo">
         <TomcatInfo>
