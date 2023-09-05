@@ -10,16 +10,12 @@
 <table>
 	<tbody>
 		<tr>
-		<td>First Name:</td>
-		<td><input type="text" name="firstName"/> </td>
+		<td>Full Name:</td>
+		<td><input type="text" name="fullName"/> </td>
 		</tr>
-		<tr>
-		<td>Last Name:</td>
-		<td><input type="text" name="lastName"/> </td>
-        </tr>
         <tr>
         <td>Username:</td>
-        <td> <input type="text" name="firstName"/> </td>
+        <td> <input type="text" name="userName"/> </td>
         </tr>
         <tr>
         <td>Email:</td>
