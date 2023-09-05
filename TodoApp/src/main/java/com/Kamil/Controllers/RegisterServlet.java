@@ -27,19 +27,22 @@ public class RegisterServlet extends HttpServlet {
 
         User user = userDao.setUserCredentials(full_name,email,username,password);
 
+        HttpSession session = req.getSession();
         try {
             int isRegister = userDao.register(user);
-            System.out.println(isRegister + "row(s) affected");
+//            System.out.println(isRegister + "row(s) affected");
 
             //use session(resp.sendRedirect) or req.attribute:
             // check user has or not ?
 
-            HttpSession session = req.getSession();
+            session.setAttribute("user",user);
             resp.sendRedirect("./MainPage.jsp");
         } catch (SQLException e) {
             //Create error page and write all error inside it
             System.out.println("error: " + e.getMessage());
-            throw new RuntimeException(e);
+            session.setAttribute("error", e.getMessage());
+            resp.sendRedirect("./Error.jsp");
+//            throw new RuntimeException(e);
         }
     }
 }

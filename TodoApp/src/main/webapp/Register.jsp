@@ -7,10 +7,18 @@
 <body>
 
 <center>
-<h2>Sign in:</h2>
-<form action="./Login" method="post">
+<h2>Sign up:</h2>
+<form action="./Register" method="post">
 <table>
 	<tbody>
+		<tr>
+		<td>Full Name:</td>
+		<td><input type="text" name="fullName"/> </td>
+		</tr>
+        <tr>
+        <td>Username:</td>
+        <td> <input type="text" name="userName"/> </td>
+        </tr>
         <tr>
         <td>Email:</td>
         <td><input type="email" name="email"/></td>
@@ -24,8 +32,8 @@
     <br/>
 	<input type="submit" />
 </form>
- <br/>
-<a href="./Register.jsp">Register page</a>
+<br/>
+<a href="./">Login page</a>
 </center>
 
 </body>
