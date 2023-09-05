@@ -10,7 +10,6 @@
 </head>
 <body>
 
-How to do a case sensitive search in WHERE clause (I'm using SQL Server)?
 <h2>Log in failed!</h2>
 </body>
 </html>
