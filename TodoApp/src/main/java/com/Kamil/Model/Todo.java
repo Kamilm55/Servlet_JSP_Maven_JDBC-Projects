@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Todo {
     private Long id;
     private String title;
-    private String username;
+    private String email;
     private String description;
     private LocalDate targetDate;
     private boolean status;
@@ -13,9 +13,9 @@ public class Todo {
     public Todo() {}; // default constructor
 
     // // parameterized constructor without id parameter if we want ot set id own we can do this with setId method
-    public Todo(String title, String username, String description, LocalDate targetDate, boolean status) {
+    public Todo(String title, String email, String description, LocalDate targetDate, boolean status) {
         this.title = title;
-        this.username = username;
+        this.email = email;
         this.description = description;
         this.targetDate = targetDate;
         this.status = status;
@@ -26,7 +26,7 @@ public class Todo {
         return "Todo{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
                 ", targetDate=" + targetDate +
                 ", status=" + status +
@@ -49,12 +49,12 @@ public class Todo {
         this.title = title;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDescription() {
@@ -73,7 +73,7 @@ public class Todo {
         this.targetDate = targetDate;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
