@@ -15,7 +15,7 @@
 	if(user == null)response.sendRedirect("./");
 %>
 
-
+<jsp:include page="./Header.jsp"></jsp:include>
 <center>
 <h2>Main page!</h2>
 <h5>Full Name:${user.getFull_name()}</h5>
@@ -25,5 +25,6 @@
 <input type="submit" value="Log out" />
 </form>
 </center>
+<jsp:include page="./Footer.jsp"></jsp:include>
 </body>
 </html>
