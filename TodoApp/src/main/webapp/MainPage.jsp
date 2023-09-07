@@ -65,7 +65,7 @@
 			<hr>
 			<div class="container text-left">
 
-				<a href="<%=request.getContextPath()%>/new"
+				<a href="<%=request.getContextPath()%>/todo/new"
 					class="btn btn-success">Add Todo</a>
 			</div>
 			<br>
@@ -89,9 +89,9 @@
 							<td><c:out value="${todo.targetDate}" /></td>
 							<td><c:out value="${todo.status}" /></td>
 
-							<td><a class="btn btn-success" href="edit?id=<c:out value='${todo.id}' />">Edit</a>
+							<td><a class="btn btn-success" href="<%=request.getContextPath()%>//todo/edit?id=<c:out value='${todo.id}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-danger"
-								href="delete?id=<c:out value='${todo.id}' />">Delete</a></td>
+								href="<%=request.getContextPath()%>/todo/delete?id=<c:out value='${todo.id}' />">Delete</a></td>
 
 						</tr>
 					</c:forEach>
