@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true" isELIgnored = "false"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-    <%@ page import="com.Kamil.Model.User" %>
+    <%@ page import="com.Kamil.Model.User,com.Kamil.Model.Todo" %>
+    <%@ page import="java.util.List" %>
 <html>
 <head>
 <title>Todo Application</title>
@@ -18,6 +19,7 @@
 
 <%
     User user=(User)session.getAttribute("user");
+    List<Todo> listTodo = (List<Todo> )session.getAttribute("listTodo");
 
 	if(user == null)response.sendRedirect("./");
 %>
@@ -36,7 +38,7 @@
 
 			<ul class="navbar-nav">
 				<li><a  href="./TodoForm.jsp"
-					class="nav-link">Todos</a></li>
+					class="nav-link">Todo</a></li>
 			</ul>
 
             <ul class="navbar-nav navbar-collapse justify-content-end">
@@ -44,7 +46,6 @@
                                         <h5 class="text-light">Full Name:${user.getFull_name()}</h5>
                                         <h5 class="text-light"> Email: ${user.getEmail()}</h5>
                                         <h5 class="text-light"> UserName: ${user.getUsername()}</h5>
-
                            </center>
             </ul>
 
@@ -72,6 +73,7 @@
 				<thead>
 					<tr>
 						<th>Title</th>
+						<th>Description</th>
 						<th>Target Date</th>
 						<th>Todo Status</th>
 						<th>Actions</th>
@@ -83,15 +85,14 @@
 
 						<tr>
 							<td><c:out value="${todo.title}" /></td>
+							<td><c:out value="${todo.getDescription()}" /></td>
 							<td><c:out value="${todo.targetDate}" /></td>
 							<td><c:out value="${todo.status}" /></td>
 
-							<td><a href="edit?id=<c:out value='${todo.id}' />">Edit</a>
-								&nbsp;&nbsp;&nbsp;&nbsp; <a
+							<td><a class="btn btn-success" href="edit?id=<c:out value='${todo.id}' />">Edit</a>
+								&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-danger"
 								href="delete?id=<c:out value='${todo.id}' />">Delete</a></td>
 
-							<!--  <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button>
-          							<button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td> -->
 						</tr>
 					</c:forEach>
 					<!-- } -->

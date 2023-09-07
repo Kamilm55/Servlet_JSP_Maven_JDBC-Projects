@@ -12,6 +12,15 @@ public class Todo {
 
     public Todo() {}; // default constructor
 
+    public Todo(Long id, String title, String email, String description, LocalDate targetDate, boolean status) {
+        this.id = id;
+        this.title = title;
+        this.email = email;
+        this.description = description;
+        this.targetDate = targetDate;
+        this.status = status;
+    }
+
     // // parameterized constructor without id parameter if we want ot set id own we can do this with setId method
     public Todo(String title, String email, String description, LocalDate targetDate, boolean status) {
         this.title = title;
