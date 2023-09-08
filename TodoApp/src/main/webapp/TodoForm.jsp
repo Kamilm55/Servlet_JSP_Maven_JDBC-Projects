@@ -50,7 +50,7 @@
 					<form action="update" method="post">
 				</c:if>
 				<c:if test="${todo == null}">
-					<form action="insert" method="post">
+					<form action="./todo/new" method="post">
 				</c:if>
 
 				<caption>

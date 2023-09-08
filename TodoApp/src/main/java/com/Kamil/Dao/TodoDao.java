@@ -12,5 +12,5 @@ public interface TodoDao {
     void insertTodo(Todo todo) throws SQLException;
     boolean deleteTodo() throws SQLException;
     boolean updateTodo(Todo todo) throws SQLException;
-
+    void setListTodo(HttpSession session) throws SQLException;
 }

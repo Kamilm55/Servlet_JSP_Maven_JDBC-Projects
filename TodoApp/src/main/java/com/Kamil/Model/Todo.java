@@ -1,5 +1,6 @@
 package com.Kamil.Model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Todo {
@@ -22,7 +23,7 @@ public class Todo {
     }
 
     // // parameterized constructor without id parameter if we want ot set id own we can do this with setId method
-    public Todo(String title, String email, String description, LocalDate targetDate, boolean status) {
+    public Todo(String email,String title,  String description, LocalDate targetDate, boolean status) {
         this.title = title;
         this.email = email;
         this.description = description;

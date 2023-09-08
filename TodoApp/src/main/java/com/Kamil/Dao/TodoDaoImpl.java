@@ -61,10 +61,16 @@ public class TodoDaoImpl implements TodoDao {
         preparedStatement.setString(1,todo.getTitle());
         preparedStatement.setString(2,todo.getEmail());
         preparedStatement.setString(3,todo.getDescription());
-        preparedStatement.setString(4,todo.getTargetDate().format(DateTimeFormatter.ofPattern("dd-MMM-yy")));
+        preparedStatement.setObject(4,todo.getTargetDate());
         preparedStatement.setBoolean(5,todo.getStatus());
         int result = preparedStatement.executeUpdate();
         System.out.println(result + "row(s) inserted");
+    }
+
+    @Override
+    public void setListTodo(HttpSession session) throws SQLException {
+        List<Todo> listTodo = this.getAllTodos(session);
+        session.setAttribute("listTodo",listTodo);
     }
 
     @Override

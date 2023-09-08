@@ -65,7 +65,7 @@
 			<hr>
 			<div class="container text-left">
 
-				<a href="<%=request.getContextPath()%>/todo/new"
+				<a href="<%=request.getContextPath()%>/TodoForm.jsp"
 					class="btn btn-success">Add Todo</a>
 			</div>
 			<br>

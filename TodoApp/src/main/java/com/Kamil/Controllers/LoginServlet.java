@@ -33,9 +33,7 @@ public class LoginServlet extends HttpServlet {
             user = userDao.login(email,password);
             session.setAttribute("user",user);
             TodoDao todoDao = new TodoDaoImpl();
-            List<Todo> listTodo = todoDao.getAllTodos(session);
-            System.out.println(listTodo);
-             session.setAttribute("listTodo",listTodo);
+            todoDao.setListTodo(session);//set for jsp variable which is located in MainPage.jsp file for displaying all todos
             resp.sendRedirect("./MainPage.jsp");
         } catch (Exception e) {
             System.out.println("Error" + e);
