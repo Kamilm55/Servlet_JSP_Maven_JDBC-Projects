@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface TodoDao {
-    Todo getTodo(long todoId);
+    Todo getTodo(long todoId) throws SQLException;
     List<Todo> getAllTodos(HttpSession session) throws SQLException;
     void insertTodo(Todo todo) throws SQLException;
-    boolean deleteTodo() throws SQLException;
-    boolean updateTodo(Todo todo) throws SQLException;
+    void deleteTodo(long todoId) throws SQLException;
+    void updateTodo(Todo todo) throws SQLException;
     void setListTodo(HttpSession session) throws SQLException;
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true" isELIgnored = "false"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-    <%@ page import="com.Kamil.Model.User" %>
+    <%@ page import="com.Kamil.Model.User,com.Kamil.Model.Todo" %>
 <html>
 <head>
 <title>Todo  Application</title>
@@ -21,7 +21,7 @@
 
 <%
     User user=(User)session.getAttribute("user");
-
+    Todo todo = (Todo) session.getAttribute("todo");
 	if(user == null)response.sendRedirect("./");
 %>
 	<header>
@@ -47,7 +47,7 @@
 		<div class="card">
 			<div class="card-body">
 				<c:if test="${todo != null}">
-					<form action="update" method="post">
+					<form action="./todo/edit?id=<c:out value='${todo.id}'/>" method="post">
 				</c:if>
 				<c:if test="${todo == null}">
 					<form action="./todo/new" method="post">

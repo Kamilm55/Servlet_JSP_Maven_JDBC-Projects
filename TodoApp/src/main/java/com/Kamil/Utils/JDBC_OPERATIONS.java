@@ -1,8 +1,10 @@
 package com.Kamil.Utils;
 
+import com.Kamil.Model.Todo;
 import com.Kamil.Model.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class JDBC_OPERATIONS {
     public static Connection getConnection(){
@@ -17,18 +19,16 @@ public class JDBC_OPERATIONS {
         }
     }
 
-//    public  static int prepareStatement(User user) throws SQLException {
-//        int result = 0;
-//
-//        PreparedStatement preparedStatement = getConnection().prepareStatement(
-//                "insert into users(full_name,email,username,`password`)\n" +
-//                "values (?,?,?,?)");
-//        preparedStatement.setString(1, user.getFull_name());
-//        preparedStatement.setString(2, user.getEmail());
-//        preparedStatement.setString(3, user.getUsername());
-//        preparedStatement.setString(4, user.getPassword());
-//         result = preparedStatement.executeUpdate();
-//
-//        return result;
-//    }
+        public static Todo setAllTodoFields(ResultSet rs) throws SQLException {
+            long id = rs.getLong("id");
+            String title =   rs.getString("title");
+            String email =  rs.getString("email");
+            String description =  rs.getString("description");
+            LocalDate target_date = rs.getDate("target_date").toLocalDate();
+            boolean is_done =  rs.getBoolean("is_done");
+            Todo todo = new Todo(id,title,email,description,target_date,is_done);
+            return todo;
+        }
+
+
 }

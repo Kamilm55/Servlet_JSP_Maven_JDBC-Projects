@@ -3,26 +3,33 @@ package com.Kamil.Dao;
 import com.Kamil.Model.Todo;
 import com.Kamil.Model.User;
 import com.Kamil.Utils.JDBC_OPERATIONS;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class TodoDaoImpl implements TodoDao {
     private static String INSERT_TODO_SQL = "INSERT INTO todos(title, email, description, target_date,  is_done) values (?, ?, ?, ?, ?);";
     private static String SHOW_ALL_TODOS_SQL = "SELECT * FROM todos where email = ?";
-
-
+    private static  String GET_ONE_TODO_WITH_ID_SQL = "select * from todos where id = ?";
+    private static  String UPDATE_ONE_TODO_SQL = "Update todos" +
+            "SET title = ? , description = ? ,target_date = ? ,is_done = ?  where id = ?;";
+    private static  String DELETE_ONE_TODO_WITH_ID_SQL = "DELETE FROM todos WHERE id = ?;";
     @Override
-    public Todo getTodo(long todoId) {
-        return null;
+    public Todo getTodo(long todoId) throws SQLException {
+        PreparedStatement preparedStatement = JDBC_OPERATIONS.getConnection().prepareStatement(GET_ONE_TODO_WITH_ID_SQL);
+        preparedStatement.setLong(1,todoId);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        if (rs.next()){
+            Todo todo = JDBC_OPERATIONS.setAllTodoFields(rs);
+            return todo;
+        }else{
+            throw new RuntimeException("There is no todo with this id");
+        }
     }
 
     @Override
@@ -36,13 +43,7 @@ public class TodoDaoImpl implements TodoDao {
             List<Todo> listTodo = new ArrayList<>();
 
             do{
-                long id = rs.getLong("id");
-                String title =   rs.getString("title");
-                String email =  rs.getString("email");
-                String description =  rs.getString("description");
-                LocalDate target_date = rs.getDate("target_date").toLocalDate();
-                boolean is_done =  rs.getBoolean("is_done");
-                Todo todo = new Todo(id,title,email,description,target_date,is_done);
+              Todo todo = JDBC_OPERATIONS.setAllTodoFields(rs);
                 listTodo.add(todo);
             }
             while (rs.next());
@@ -74,12 +75,26 @@ public class TodoDaoImpl implements TodoDao {
     }
 
     @Override
-    public boolean deleteTodo() throws SQLException {
-        return false;
+    public void deleteTodo(long todoId) throws SQLException {
+        PreparedStatement preparedStatement = JDBC_OPERATIONS.getConnection().prepareStatement(DELETE_ONE_TODO_WITH_ID_SQL);
+        preparedStatement.setLong(1,todoId);
+        int result = preparedStatement.executeUpdate();
+        System.out.println(result + " row(s) deleted where id = " + todoId);
     }
 
     @Override
-    public boolean updateTodo(Todo todo) throws SQLException {
-        return false;
+    public void updateTodo(Todo todo) throws SQLException {
+        System.out.println("works 2");
+        PreparedStatement preparedStatement = JDBC_OPERATIONS.getConnection().prepareStatement(UPDATE_ONE_TODO_SQL);
+        System.out.println("works 3");
+        preparedStatement.setString(1,todo.getTitle());
+        preparedStatement.setString(2,todo.getDescription());
+        preparedStatement.setObject(3,todo.getTargetDate());
+        preparedStatement.setBoolean(4,todo.getStatus());
+        preparedStatement.setLong(5,todo.getId());
+        System.out.println("works4");
+        int result = preparedStatement.executeUpdate();
+        System.out.println("works5");
+        System.out.println(result + " row(s) updated where id = " + todo.getId());
     }
 }

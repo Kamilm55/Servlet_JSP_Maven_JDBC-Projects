@@ -89,7 +89,7 @@
 							<td><c:out value="${todo.targetDate}" /></td>
 							<td><c:out value="${todo.status}" /></td>
 
-							<td><a class="btn btn-success" href="<%=request.getContextPath()%>//todo/edit?id=<c:out value='${todo.id}' />">Edit</a>
+							<td><a class="btn btn-success" href="<%=request.getContextPath()%>/todo/setTodoForEditOption?id=<c:out value='${todo.id}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-danger"
 								href="<%=request.getContextPath()%>/todo/delete?id=<c:out value='${todo.id}' />">Delete</a></td>
 
