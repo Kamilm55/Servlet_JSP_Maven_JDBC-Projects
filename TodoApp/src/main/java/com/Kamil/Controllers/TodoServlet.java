@@ -32,7 +32,6 @@ public class TodoServlet extends HttpServlet {
         String action = req.getPathInfo();
         HttpSession session = req.getSession();
 
-        System.out.println(action);
         switch (action) {
             case "/new":
                 insertTodo(session,req,resp);
@@ -46,11 +45,18 @@ public class TodoServlet extends HttpServlet {
             case "/delete":
                 deleteTodo(session,req,resp);
                 break;
+            case "/AddButton":
+                addButton(session,req,resp);
+                break;
             default:
                 resp.sendRedirect("../MainPage.jsp");
                 break;
         }
 
+    }
+    protected void addButton(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws IOException{
+        session.removeAttribute("todo");
+        resp.sendRedirect("../TodoForm.jsp");
     }
     protected void editTodo(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws IOException    {
         long id = Integer.parseInt(req.getParameter("id"));
@@ -63,18 +69,13 @@ public class TodoServlet extends HttpServlet {
         Todo todo = new Todo(id,title, user.getEmail(), description,targetDate,status);
 
         try {
-            System.out.println(todo + "1");
             todoDao.updateTodo(todo);
-            System.out.println("works");
             todoDao.setListTodo(session);
-            System.out.println(todo + "2");
             session.removeAttribute("todo");
-            System.out.println(todo+ "3");
-//            resp.sendRedirect("../MainPage.jsp");
+            resp.sendRedirect("../MainPage.jsp");
         } catch (SQLException e) {
             resp.sendRedirect("./Error.jsp");
 //            throw new RuntimeException(e);
-            System.out.println(todo+ "4");
         }
     }
     protected void setTodoForEditOption(HttpSession session, HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -102,6 +103,7 @@ public class TodoServlet extends HttpServlet {
 
     }
     protected void insertTodo(HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//        session.removeAttribute("todo");
         String title = req.getParameter("title");
         String description = req.getParameter("description");
         boolean status = Boolean.parseBoolean(req.getParameter("isDone"));

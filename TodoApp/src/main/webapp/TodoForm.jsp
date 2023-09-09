@@ -81,12 +81,12 @@
 				</fieldset>
 
 				<fieldset class="form-group">
-					<label>Todo Status</label> <select class="form-control"
-						name="isDone">
-						<option value="false">In Progress</option>
-						<option value="true">Complete</option>
-					</select>
-				</fieldset>
+                    <label for="todoStatus">Todo Status</label>
+                    <select class="form-control" name="isDone" id="todoStatus">
+                        <option value="false" <c:if test="${!todo.getStatus()}">selected</c:if>>In Progress</option>
+                        <option value="true" <c:if test="${todo.getStatus()}">selected</c:if>>Complete</option>
+                    </select>
+                </fieldset>
 
 				<fieldset class="form-group">
 					<label>Todo Target Date</label> <input type="date"
