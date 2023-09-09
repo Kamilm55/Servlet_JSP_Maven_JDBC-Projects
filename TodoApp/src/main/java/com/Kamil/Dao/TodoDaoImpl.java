@@ -39,8 +39,8 @@ public class TodoDaoImpl implements TodoDao {
         preparedStatement.setString(1,user.getEmail());
         ResultSet rs = preparedStatement.executeQuery();
 
-        if(rs.next()){
             List<Todo> listTodo = new ArrayList<>();
+        if(rs.next()){
 
             do{
               Todo todo = JDBC_OPERATIONS.setAllTodoFields(rs);
@@ -48,12 +48,12 @@ public class TodoDaoImpl implements TodoDao {
             }
             while (rs.next());
 
-
-            return listTodo;
         }
         else {
-            throw new SQLException("There is no todos in your account");
+            System.out.println("There is no todos in your account");
+//            throw new SQLException("There is no todos in your account");
         }
+        return listTodo;
     }
 
     @Override

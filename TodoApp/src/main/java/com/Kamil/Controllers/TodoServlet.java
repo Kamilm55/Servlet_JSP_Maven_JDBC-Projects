@@ -98,7 +98,7 @@ public class TodoServlet extends HttpServlet {
             resp.sendRedirect("../MainPage.jsp");
         } catch (SQLException e) {
             resp.sendRedirect("./Error.jsp");
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
         }
 
     }
